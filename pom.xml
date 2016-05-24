@@ -16,6 +16,7 @@
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.2.2</version>
 				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
 					<tagBase>http://192.168.10.100/svn/misc/product-add-ons/3rd-party/tags/</tagBase>
 				</configuration>
 			</plugin>

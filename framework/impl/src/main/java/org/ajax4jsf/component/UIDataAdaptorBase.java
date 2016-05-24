@@ -60,6 +60,7 @@ import org.ajax4jsf.model.SerializableDataModel;
 import org.ajax4jsf.renderkit.AjaxChildrenRenderer;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Base class for iterable components, like dataTable, Tomahawk dataList,
@@ -867,12 +868,12 @@ public abstract class UIDataAdaptorBase extends UIData implements AjaxDataEncode
 	 */
 	protected Map<String, SavedState> getChildState(FacesContext faces) {
 		if (this.childState == null) {
-			this.childState = new HashMap<String, Map<String,SavedState>>();
+			this.childState = new ConcurrentHashMap<String, Map<String,SavedState>>();
 		}
 		String baseClientId = getBaseClientId(faces);
 		Map<String, SavedState> currentChildState = childState.get(baseClientId);
 		if (null == currentChildState) {
-			currentChildState = new HashMap<String, SavedState>();
+			currentChildState = new ConcurrentHashMap<String, SavedState>();
 			childState.put(baseClientId, currentChildState);
 		}
 		return currentChildState;
@@ -882,7 +883,7 @@ public abstract class UIDataAdaptorBase extends UIData implements AjaxDataEncode
 		Map<String, Map<String, SavedState>> childStateCopy = null;
 		
 		if (this.childState != null) {
-			childStateCopy = new HashMap<String, Map<String,SavedState>>();
+			childStateCopy = new ConcurrentHashMap<String, Map<String,SavedState>>();
 		
 			for (Entry<String, Map<String, SavedState>> entry : this.childState.entrySet()) {
 				String entryKey = entry.getKey();
@@ -891,7 +892,7 @@ public abstract class UIDataAdaptorBase extends UIData implements AjaxDataEncode
 				Map<String, SavedState> entryValueCopy = null;
 				
 				if (entryValue != null) {
-					entryValueCopy = new HashMap<String, SavedState>(entryValue);
+					entryValueCopy = new ConcurrentHashMap<String, SavedState>(entryValue);
 				}
 				
 				childStateCopy.put(entryKey, entryValueCopy);

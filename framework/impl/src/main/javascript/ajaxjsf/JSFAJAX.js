@@ -390,8 +390,13 @@ A4J.AJAX.XMLHttpRequest.prototype = {
 	   		        	LOG.error("Error to clear node content by innerHTML "+e.message);
 						Sarissa.clearChildNodes(oldnode);
 	   		        }
-   		        }
-   		        oldnode.outerHTML = new XMLSerializer().serializeToString(newnode);
+				}
+				// serializeToString is not available in IE8
+				if (typeof window.XMLSerializer !== "undefined") {
+					oldnode.outerHTML = new XMLSerializer().serializeToString(newnode);
+				} else if (typeof xmlNode.xml != "undefined") {
+					oldnode.outerHTML = xmlNode.xml;
+				}
 			} else {
     // need to check for firstChild due to opera 8 bug with hasChildNodes
 				Sarissa.clearChildNodes(oldnode);
@@ -620,7 +625,12 @@ A4J.AJAX.XMLHttpRequest.prototype = {
 	_copyAttribute : function(src,dst,attr){
 		var value = src.getAttribute(attr);
 		if(value){
-			dst.setAttribute(attr,value);
+			//dst.setAttribute(attr,value);
+			try {
+				dst.setAttribute(attr, value);
+			} catch (err) {
+				//alert('Error');
+			}
 		}
 	}
 
@@ -1041,7 +1051,8 @@ A4J.AJAX.processResponse = function(req) {
         	  }
         	  // Replace client-side hidden inputs for JSF View state.
         	  var idsSpan = req.getElementById("ajax-view-state");
-	          LOG.debug("Hidden JSF state fields: "+idsSpan);
+			  // breaks in IE8 because the node cannot be stringified
+	          // LOG.debug("Hidden JSF state fields: "+idsSpan);
         	  if(idsSpan != null){
         	  	// For a portal case, replace content in the current window only.
 			        var namespace = options.parameters['org.ajax4jsf.portlet.NAMESPACE'];

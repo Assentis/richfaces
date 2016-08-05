@@ -4,7 +4,7 @@
 	<artifactId>root</artifactId>
 	<packaging>pom</packaging>
 	<name>RichFaces project</name>
-	<version>3.3.4.Final-assentis-1.1-SNAPSHOT</version>
+	<version>3.3.3.Final-assentis-1.2-SNAPSHOT</version>
 
 	<url>http://labs.jboss.com/jbossrichfaces</url>
 	

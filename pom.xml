@@ -4,7 +4,7 @@
 	<artifactId>root</artifactId>
 	<packaging>pom</packaging>
 	<name>RichFaces project</name>
-	<version>3.3.3.Final-assentis-1.2</version>
+	<version>3.3.3.Final-assentis-1.3-SNAPSHOT</version>
 
 	<url>http://labs.jboss.com/jbossrichfaces</url>
 	
@@ -199,7 +199,7 @@
 	</distributionManagement>
 
 	<scm>
-		<connection>scm:svn:http://svn.assentis.info/svn/misc/product-add-ons/3rd-party/tags/root-3.3.3.Final-assentis-1.2</connection>
-		<developerConnection>scm:svn:http://svn.assentis.info/svn/misc/product-add-ons/3rd-party/tags/root-3.3.3.Final-assentis-1.2</developerConnection>
+		<connection>scm:svn:http://svn.assentis.info/svn/misc/product-add-ons/3rd-party/richfaces-3.3.3</connection>
+		<developerConnection>scm:svn:http://svn.assentis.info/svn/misc/product-add-ons/3rd-party/richfaces-3.3.3</developerConnection>
 	</scm>
 </project>

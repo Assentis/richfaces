@@ -273,17 +273,17 @@ A4J.AJAX.XMLHttpRequest.prototype = {
 		// first attempt - .getElementById.
 		var oDoc = this._request.responseXML;
 		if(oDoc){
-    	if(typeof(oDoc.getElementById) != 'undefined') {
+    	if('getElementById' in oDoc) {
 			LOG.debug("call getElementById for id= "+id);
     		return  oDoc.getElementById(id);
     	} 
-    	else if(typeof(oDoc.selectSingleNode) != "undefined") {
+    	else if('selectSingleNode' in oDoc) {
 			LOG.debug("call selectSingleNode for id= "+id);
     		return oDoc.selectSingleNode("//*[@id='"+id+"']"); /* XPATH istead of ID */
     	}
     	// nodeFromID not worked since XML validation disabled by
     	// default for MS 
-    	else if(typeof(oDoc.nodeFromID) != "undefined") {
+    	else if('nodeFromID' in oDoc) {
 			LOG.debug("call nodeFromID for id= "+id);
     		return oDoc.nodeFromID(id);
     	} 
@@ -315,11 +315,7 @@ A4J.AJAX.XMLHttpRequest.prototype = {
 
 		try {
 			LOG.debug("Evaluate script replaced area in document: ", newscript);
-			if (window.execScript) {
-				window.execScript( newscript );
-			} else {
-				window.eval(newscript);
-			}
+			window.eval(newscript);
 			LOG.debug("Script evaluation succeeded");
 		} catch(e){
 			LOG.error("ERROR Evaluate script:  Error name: " + e.name + e.message?". Error message: "+e.message:"");
@@ -393,7 +389,7 @@ A4J.AJAX.XMLHttpRequest.prototype = {
 				}
 				// serializeToString is not available in IE8
 				if (typeof window.XMLSerializer !== "undefined") {
-					oldnode.outerHTML = new XMLSerializer().serializeToString(newnode);
+					oldnode.outerHTML = (new XMLSerializer()).serializeToString(newnode);
 				} else if (typeof xmlNode.xml != "undefined") {
 					oldnode.outerHTML = xmlNode.xml;
 				}
@@ -1788,7 +1784,7 @@ if ((!document.all || window.opera) && !A4J.AJAX._scriptTested){
 			oDomDoc = (new DOMParser()).parseFromString(xmlString, "text/xml");
 			var _script=oDomDoc.getElementsByTagName("script")[0];
 			if (!window.opera && !A4J.AJAX.isWebkitBreakingAmps() && _span.outerHTML) {
-				_span.outerHTML = new XMLSerializer().serializeToString(_script); 
+				_span.outerHTML = (new XMLSerializer()).serializeToString(_script);
 			} else {
 		    	var importednode ;
 		   		importednode = window.document.importNode(_script, true);

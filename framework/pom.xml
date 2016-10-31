@@ -2,7 +2,7 @@
 	<parent>
 		<artifactId>root</artifactId>
 		<groupId>org.richfaces</groupId>
-		<version>3.3.3.Final-assentis-1.4</version>
+		<version>3.3.3.Final-assentis-1.5-SNAPSHOT</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>

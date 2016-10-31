@@ -50,7 +50,7 @@
 -->	
 	<filelist id="jquery"
 	          dir="${basedir}/src/main/javascript/jquery"
-	          files="jquery-1.3.2.js,../memory.js,patches.js">
+	          files="jquery-1.12.4.js,../memory.js,patches.js,noConflict.js,jquery.browser.js">
 	</filelist>
 
 	<filelist id="scriptaculous"

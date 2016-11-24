@@ -441,7 +441,8 @@ Object.extend(Function.prototype, (function() {
 
     return {
         argumentNames:       argumentNames,
-        bind:                bind,
+	    // SOCO-1505 this is not needed anymore and even breaks other scripts like aurelia
+        //bind:                bind,
         bindAsEventListener: bindAsEventListener,
         curry:               curry,
         delay:               delay,

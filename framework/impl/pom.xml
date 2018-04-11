@@ -7,7 +7,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.richfaces.framework</groupId>
-	<artifactId>${classifiedArtifactId}</artifactId>
+	<artifactId>richfaces-impl</artifactId>
 	<name>Java Server Faces AJAX framework implementation</name>
 
 	<profiles>
@@ -137,7 +137,7 @@
 									<property name="target-dir" value="${project.build.directory}/javascript" />
 								</ant>
 							</tasks>
-							<resourceRoot>${project.build.directory}/javascript</resourceRoot>
+							<!--<resourceRoot>${project.build.directory}/javascript</resourceRoot>-->
 						</configuration>
 					</execution>
 				</executions>

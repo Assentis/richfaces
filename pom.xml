@@ -46,7 +46,7 @@
 							</manifest>
 							<manifestEntries>
 								<mode>development</mode>
-								<Build-Number>${buildNumber}</Build-Number>
+								<Build-Number>1234</Build-Number>
 							</manifestEntries>
 						</archive>
 					</configuration>

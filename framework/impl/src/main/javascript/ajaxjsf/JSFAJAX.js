@@ -389,7 +389,7 @@ A4J.AJAX.XMLHttpRequest.prototype = {
 				}
 				// serializeToString is not available in IE8
 				if (typeof window.XMLSerializer !== "undefined") {
-					oldnode.outerHTML = (new XMLSerializer()).serializeToString(newnode);
+					oldnode.outerHTML = document.importNode(newnode, true).outerHTML;
 				} else if (typeof xmlNode.xml != "undefined") {
 					oldnode.outerHTML = xmlNode.xml;
 				}

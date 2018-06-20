@@ -129,7 +129,7 @@ if(Sarissa._SARISSA_IS_IE){
     // define XMLHttpRequest if missing or in case of IE7
     // as it hardcodes to MSXML3.0, causing version problems
     // between different activex controls 
-    if(!window.XMLHttpRequest || Sarissa._SARISSA_IS_IE9){
+    if(!window.XMLHttpRequest || Sarissa._SARISSA_IS_IE7){
         /**
          * Emulate XMLHttpRequest
          * @constructor
@@ -208,8 +208,10 @@ if(Sarissa._SARISSA_IS_IE){
     };
     // see non-IE version
     Sarissa.setXpathNamespaces = function(oDoc, sNsSet) {
-        oDoc.setProperty("SelectionLanguage", "XPath");
-        oDoc.setProperty("SelectionNamespaces", sNsSet);
+        if (oDoc.setProperty) {
+            oDoc.setProperty("SelectionLanguage", "XPath");
+            oDoc.setProperty("SelectionNamespaces", sNsSet);
+        }
     };
     /**
      * A class that reuses the same XSLT stylesheet for multiple transforms.

@@ -389,7 +389,11 @@ A4J.AJAX.XMLHttpRequest.prototype = {
 				}
 				// serializeToString is not available in IE8
 				if (typeof window.XMLSerializer !== "undefined") {
-					oldnode.outerHTML = document.importNode(newnode, true).outerHTML;
+				    if (Sarissa._SARISSA_IS_IE9_ONLY) {
+					    oldnode.outerHTML = (new XMLSerializer()).serializeToString(newnode);
+                    } else {
+                        oldnode.outerHTML = document.importNode(newnode, true).outerHTML;
+                    }
 				} else if (typeof xmlNode.xml != "undefined") {
 					oldnode.outerHTML = xmlNode.xml;
 				}

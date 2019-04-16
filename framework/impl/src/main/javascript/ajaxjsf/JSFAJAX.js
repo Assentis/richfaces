@@ -1125,16 +1125,7 @@ A4J.AJAX.replacePage = function(req){
 						}
 						LOG.debug("replace all page content with response");
 	         			var isIE = Sarissa._SARISSA_IS_IE;
-						// maksimkaszynski
-						//Prevent "Permission denied in IE7"
-						//Reset calling principal
-						var oldDocOpen = window.document.open;
-						if (isIE) {
-							LOG.debug("setup custom document.open method");							
-							window.document.open = function(sUrl, sName, sFeatures, bReplace) {
-								oldDocOpen(sUrl, sName, sFeatures, bReplace);
-							}
-						}
+						
 						// /maksimkaszynski
 						window.setTimeout(function() {
 							var isDocOpen=false;
@@ -1198,8 +1189,6 @@ A4J.AJAX.replacePage = function(req){
 									}
 								}
 								// TODO - scripts reloading ?
-							} finally {
-								window.document.open = oldDocOpen;								
 							}
 	          				if (window.LOG) {
 		          				LOG.debug("page content has been replaced");
